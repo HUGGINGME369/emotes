@@ -1,0 +1,21 @@
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# Load pre-trained model and tokenizer
+model_name = 'gpt2'
+model = GPT2LMHeadModel.from_pretrained(model_name)
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+def inner_voice(input_text):
+    # Encode input text
+    input_ids = tokenizer.encode(input_text, return_tensors='pt')
+    
+    # Generate inner dialogue
+    output = model.generate(input_ids, max_length=100, num_return_sequences=1)
+    
+    # Decode and return the generated text
+    return tokenizer.decode(output[0], skip_special_tokens=True)
+
+# Example usage
+thought = "Should I take this action?"
+response = inner_voice(thought)
+print(f"Inner Voice: {response}")
