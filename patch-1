@@ -1,0 +1,43 @@
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# Load pre-trained model and tokenizer
+model_name = 'gpt2'
+model = GPT2LMHeadModel.from_pretrained(model_name)
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+# Initialize memory
+memory = []
+
+def inner_voice(input_text):
+    global memory
+    # Add input to memory
+    memory.append(input_text)
+    
+    # Combine memory into a single context
+    context = " ".join(memory)
+    
+    # Encode context
+    input_ids = tokenizer.encode(context, return_tensors='pt')
+    
+    # Generate inner dialogue
+    output = model.generate(input_ids, max_length=100, num_return_sequences=1)
+    
+    # Decode and return the generated text
+    response = tokenizer.decode(output[0], skip_special_tokens=True)
+    
+    # Add response to memory
+    memory.append(response)
+    
+    return response
+
+# Example usage
+thought = "Should I take this action?"
+response = inner_voice(thought)
+print(f"Inner Voice: {response}")
+AI-generated code. Review and use carefully. More info on FAQ.
+To further enhance this, you can integrate Retrieval-Augmented Generation (RAG) and knowledge graphs. Here’s a brief overview of how you might do that:
+
+Retrieval-Augmented Generation (RAG):
+Use a retrieval system to fetch relevant documents or information based on the input context before generating the response. This can be done using libraries like faiss for efficient similarity search.
+Knowledge Graphs:
+Incorporate a knowledge graph to provide structured information. You can use libraries like rdflib to work with RDF data and query it using SPARQL.
