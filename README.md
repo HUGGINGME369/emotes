@@ -356,3 +356,29 @@ def inner_voice(input_text):
 thought = "Should I take this action?"
 response = inner_voice(thought)
 print(f"Inner Voice: {response}")
+def bayes_theorem(p_a, p_b, p_b_given_a):
+    """
+    Calculate the probability of A given B using Bayes' Theorem.
+    
+    Parameters:
+    p_a (float): Prior probability of A
+    p_b (float): Prior probability of B
+    p_b_given_a (float): Probability of B given A
+    
+    Returns:
+    float: Posterior probability of A given B
+    """
+    return (p_b_given_a * p_a) / p_b
+
+# Example usage
+p_a = 0.2  # Probability of rain
+p_b = 0.4  # Probability of cloudy
+p_b_given_a = 0.85  # Probability of cloudy given rain
+
+# Calculate the probability of rain given it's cloudy
+p_a_given_b = bayes_theorem(p_a, p_b, p_b_given_a)
+print(f"The probability of rain given it's cloudy is: {p_a_given_b:.2f}")
+
+This code defines a function bayes_theorem that calculates the posterior probability ( P(A|B) ) using Bayes’ Theorem:
+P(A∣B)=P(B)P(B∣A)⋅P(A)​
+In the example, we calculate the probability of rain given that it is cloudy. You can adjust the probabilities to fit your specific use case.
