@@ -1,0 +1,14 @@
+Input Handling:
+Checks for empty input and provides appropriate feedback.
+Sentence Analysis:
+Processes each sentence to accumulate emotion scores.
+Normalization:
+Normalizes scores to give a percentage-like output for each emotion.
+Sorting:
+Returns a sorted dictionary of emotions, making it easier to understand the dominant emotions.
+Example Output
+Running the example usage might yield output similar to:
+
+Python
+
+Detected emotions: {'POSITIVE': 0.75, 'NEGATIVE': 0.25}
